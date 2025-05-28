@@ -7,7 +7,7 @@ function MovieCard({ title, description, image, rating }) {
     const [hasLiked, setHasLiked] = useState(false)
   return (
     <>
-      <div className="card" style={{ margin: '20px'}}>
+      <div className="card">
         <img src={image} className="card-img-top" alt={title} />
         <div className="card-body">
           <h5 className="card-title">{ title }</h5>
