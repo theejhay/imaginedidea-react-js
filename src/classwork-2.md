@@ -12,7 +12,7 @@ Create a **reusable `Button` component** that accepts the following props:
 
 ## ✅ Tasks
 
-1. Create a `Button.jsx` file.
+1. Create a `CustomButton.jsx` file.
 2. Write a functional `Button` component.
 3. Add **prop types** and **default props**.
 4. Use **inline styles** to dynamically change the background color.
