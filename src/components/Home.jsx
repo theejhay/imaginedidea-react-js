@@ -1,14 +1,12 @@
 import Carousel from "./Carousel"
-import CustomButton from "./CustomButton";
-import Movie from "./Movie";
-import Toggle from "./Toggle";
-import ToggleText from "./ToggleText";
+import FetchUsers from "./FetchUsers";
+import HelloEffect from "./HelloEffect";
+
 function Home() {
     return (
         <>
          <Carousel />
-         <CustomButton text="Register Me" color="green" disabled={true}  />
-         <ToggleText />
+         <FetchUsers />
         </>
     )
 }
