@@ -28,7 +28,7 @@ Create a **reusable `Button` component** that accepts the following props:
 />
 
 <Button 
-  label="Disabled Button" 
+  text="Disabled Button" 
   disabled={true} 
 />
 
