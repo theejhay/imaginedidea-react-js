@@ -38,7 +38,7 @@ function Navbar() {
 
             <li className="nav-item">
             <Link className="nav-link" to="/movie-list">
-                Movie List
+                Movie Lists
               </Link>
             </li>
             <li className="nav-item">
