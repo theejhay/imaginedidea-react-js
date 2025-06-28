@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import PostComment from "./PostComment";
 
 function PostDetails() {
   const { id } = useParams();
@@ -35,6 +36,7 @@ function PostDetails() {
       </div>
 
       <h3> Comments </h3>
+      <PostComment post={post} />
     </>
   );
 }

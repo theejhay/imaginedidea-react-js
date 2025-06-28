@@ -5,11 +5,50 @@ function CreatePost() {
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
     const [success, setSuccess] = useState(false);
+    const [titleError, setTitleError] = useState("");
+    const [bodyError, setBodyError] = useState("");
 
     const CREATED = 201;
 
+    const validateTitle = (value) => {
+      if (!value.trim()){
+        setTitleError("Title is Required");
+        return false;
+      } else if (value.trim().length < 4){
+        setTitleError("Title must be at least 4 characters");
+        return false;
+      } else if( value.trim().length > 20) {
+        setTitleError("Title cannot be more than 20 characters");
+      } else {
+        setTitleError("");
+        return true;
+      }
+    }
+
+    const validateBody = (value) => {
+      if (!value.trim()){
+        setBodyError("Body is Required");
+        return false;
+      } else if (value.trim().length < 10){
+        setBodyError("Body must be at least 10 characters");
+        return false;
+      } else if( value.trim().length > 200) {
+        setBodyError("Body cannot be more than 200 characters");
+      } else {
+        setBodyError("");
+        return true;
+      }
+    }
 
     const handleSubmit =  async (e) => {
+
+      const isTitleValid = validateTitle(title);
+      const isBodyValid = validateBody(body);
+
+      if(!isTitleValid || !isBodyValid) {
+        setSuccess(false);
+        return;
+      }
         
         // Preparing post data to be submitted
         const newPost = {
@@ -32,8 +71,17 @@ function CreatePost() {
             setSuccess(true);
             setBody('');
             setTitle('');
-        }
+        } else {
+          setSuccess(false);
+        }          
     }
+
+    const isFormValid =
+           title.trim().length >=4 &&
+          title.trim().length <=20 &&
+          body.trim().length >= 10 && 
+          body.trim().length  <= 200;
+      
 
   return (
     <div className="container">
@@ -51,8 +99,12 @@ function CreatePost() {
             id="exampleFormControlInput1"
             placeholder="Post Title"
             value={title}
-            onChange={ e => setTitle(e.target.value)}
+            onChange={ e => {
+               setTitle(e.target.value);
+               validateTitle(e.target.value);
+            }}
           />
+          { titleError && <p className="text-danger">{titleError}</p>}
         </div>
         <div className="mb-3">
           <label className="form-label">
@@ -63,11 +115,15 @@ function CreatePost() {
             id="exampleFormControlTextarea1"
             rows="3"
             value={body}
-            onChange={e => setBody(e.target.value)}
+            onChange={e => {
+              setBody(e.target.value);
+              validateBody(e.target.value);
+            } }
           ></textarea>
+              { bodyError && <p className="text-danger">{bodyError}</p>}
         </div>
 
-        <button type="button" onClick={handleSubmit} className="btn btn-primary"> Create</button>
+        <button type="button" onClick={handleSubmit} className="btn btn-primary" disabled={!isFormValid}> Create</button>
       </form>
     </div>
   );
